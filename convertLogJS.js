@@ -148,19 +148,22 @@ var section = undefined;
 //reading input file
 var fs = require('fs'),
   readline = require('readline'),
-   instream = fs.createReadStream('./modsec_audit.log.1'),
+   instream = fs.createReadStream('/tmp/modsec_audit.log.1'),
     outstream = new (require('stream'))(),
      rl = readline.createInterface(instream, outstream);
      
 rl.on('line', function (line) {
   line = line.trim();
   var fsWrite = require('fs');
-  if(line.match(SEPARATOR)) {
-	var section_id = line.match(SEPARATOR)[2];
+  var lineRx = line.match(SEPARATOR);
+  if(lineRx) {
+    var section_number = lineRx[1];
+    var section_id = lineRx[2];
 	switch(section_id) {
 		case 'A':
 			transaction =  {}; //hashmap
-			section = undefined;
+            section = undefined;
+            transaction['id1'] = section_number;
 			break;
         case 'B':
 			section = new RequestHeader();
@@ -205,11 +208,15 @@ rl.on('line', function (line) {
 		if((section instanceof RequestHeader) || section instanceof RequestBody || (section instanceof ResponseHeader) || (section instanceof AuditLogTrailer)) {
 			section.attach(line);
 		} else {
-			section = section + line; //it is a string for example
+			section = section + line;
 		}
 	} else {
-        //A and Z section (first and last for each block)
+        //A and Z section (first and last for each block), where line is defined only in A section
 		section = line;
+        if(line) {
+            var id_transaction = (line.split(/](.+)/)[1]).trim().split(" ")[0]; // split "]" in an array of 2, take the second part and split by " "; the id is the first element
+            transaction['id2'] = id_transaction;
+        }
 	}
    }
 });
