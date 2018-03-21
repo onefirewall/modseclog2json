@@ -1,5 +1,5 @@
 # modseclog2json
 
-Prerequisites
-- node with js Class support
+Usage
 - npm install StringScanner
+- node convertLogJS

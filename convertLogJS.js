@@ -1,6 +1,3 @@
-# o
-#!/usr/bin/env node
-
 SEPARATOR = /^--([0-9a-f]+)-([A-Z])--$/;
 
 class RequestHeader {
@@ -28,7 +25,6 @@ class RequestHeader {
 		}
 	}
 }
-
 
 class RequestBody {
 	constructor() {
@@ -143,7 +139,6 @@ class AuditLogTrailer {
 }
 
 
-//MAIN
 var transaction = undefined;
 var section = undefined;
 //reading input file
@@ -224,3 +219,4 @@ rl.on('line', function (line) {
     
 rl.on('close', function (line) {
 });
+
