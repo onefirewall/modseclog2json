@@ -1,0 +1,9 @@
+temp
+*.txt
+*.log
+*.logs
+.DS*
+node_modules
+.vscode
+*.conf
+config.json
