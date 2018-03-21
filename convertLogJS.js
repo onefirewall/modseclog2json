@@ -1,3 +1,4 @@
+# o
 #!/usr/bin/env node
 
 SEPARATOR = /^--([0-9a-f]+)-([A-Z])--$/;
