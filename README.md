@@ -2,4 +2,4 @@
 
 Usage
 - npm install StringScanner
-- node convertLogJS
+- node app
