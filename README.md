@@ -1,5 +1,4 @@
-# modseclog2json
+# modseclog2json (OneFirewall Alliance LTD)
 
-Usage
 - npm install StringScanner
 - node app
