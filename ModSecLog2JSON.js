@@ -216,7 +216,12 @@ var ModSecLog2JSON = function (){
 					section = line;
 					if(line) {
 						var id_transaction = (line.split(/](.+)/)[1]).trim().split(" ")[0]; // split "]" in an array of 2, take the second part and split by " "; the id is the first element
+						var src_ip = (line.split(/](.+)/)[1]).trim().split(" ")[1];
+						var src_port = (line.split(/](.+)/)[1]).trim().split(" ")[2];
+						
 						transaction['id2'] = id_transaction;
+						transaction['src_ip'] = src_ip;
+						transaction['src_port'] = src_port;
 					}
 				}
 				}
